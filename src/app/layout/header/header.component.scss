@@ -1,0 +1,19 @@
+@import "../../../variables";
+mat-toolbar {
+//   background-color: $base-color;
+  color: $color;
+  display: flex;
+  justify-content: space-between;
+  img {
+    width: 10%;
+    background: transparent;
+  }
+  ul li {
+    font-weight: 100;
+    font-size: 1rem;
+    color: $base-color;
+    list-style: none;
+    display: inline-block;
+    margin: auto 1vw;
+  }
+}
