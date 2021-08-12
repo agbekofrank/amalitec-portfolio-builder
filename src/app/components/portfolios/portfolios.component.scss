@@ -1,0 +1,114 @@
+@import "../../../variables";
+.offwhite {
+  color: $offwhite;
+}
+.green {
+  color: $green;
+}
+.skill-set-container {
+  border: 1px solid rgb(184, 183, 183);
+  background-color: #ddd;
+  border-radius: 0.5vh;
+  width: 20vw;
+  height: 3vh;
+}
+.skills-text {
+  text-align: right;
+  padding: 1px 0;
+  color: #ddd;
+}
+.js {
+  width: 90%;
+  height: 100%;
+  background-color: rgb(3, 41, 53);
+}
+.python {
+  width: 75%;
+  height: 100%;
+  background-color: rgb(3, 53, 20);
+}
+.java {
+  width: 50%;
+  height: 100%;
+  background-color: rgb(53, 40, 3);
+}
+.react {
+  width: 90%;
+  height: 100%;
+  background-color: rgb(161, 7, 54);
+}
+
+main {
+  font-family: "Varela Round", sans-serif;
+  // border-radius: 40px;
+  min-width: 60vw;
+  max-width: 62vw;
+  height: 80vh;
+  margin: 5vh auto;
+  .img-holder {
+    min-height: 25vw;
+    display: grid;
+    background-color: #090909;
+    grid-template-columns: 1fr 2fr;
+    .pics {
+      margin: 30% auto;
+      background-color: #090909;
+      img {
+        width: 100%;
+        height: auto;
+        border-radius: 40%;
+      }
+    }
+    .info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      color: white;
+      margin: 10% auto;
+      width: 85%;
+      height: 60%;
+      padding: 2% 0 10% 10%;
+      //   text-align: center;
+      font-weight: 300;
+    }
+    .p1 {
+      font-size: 1.01rem;
+      color: rgb(86, 90, 88);
+      .offwhite {
+        color: $offwhite;
+      }
+    }
+    .p2 {
+      font-size: 2.9rem;
+      font-weight: lighter;
+    }
+    .p3 {
+      border: 2px solid rgb(124, 121, 121);
+      min-width: 24%;
+      max-width: 10vw;
+      border-radius: 7vw;
+      text-align: center;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+  }
+  .text {
+    min-height: 30vh;
+    color: $green;
+    display: grid;
+    gap: 0.3rem;
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: repeat(3, auto);
+    // border: 2px solid rgb(51, 14, 14);
+    // text-align: center;
+
+    mat-icon {
+      font-size: 2.5rem;
+    }
+    .box {
+      // width: 200px;
+      // height: 200px;
+      // background-color: red;
+    }
+  }
+}
