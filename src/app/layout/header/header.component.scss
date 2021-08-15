@@ -16,4 +16,10 @@ mat-toolbar {
     display: inline-block;
     margin: auto 1vw;
   }
+  .add {
+    cursor: pointer;
+    :hover{
+      transform: scale(1.4);
+    }
+  }
 }

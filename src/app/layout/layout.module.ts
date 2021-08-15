@@ -6,6 +6,10 @@ import { HeaderComponent } from './header/header.component';
 import { MaterialModule } from '../material/material/material.module';
 import { ComponentsModule } from '../components/components/components.module';
 import { PortfoliosComponent } from '../components/portfolios/portfolios.component';
+import { CreatePortfolioComponent } from '../components/create-portfolio/create-portfolio.component';
+import { TraineesComponent } from './trainees/trainees.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { TraineeFormComponent } from './trainee-form/trainee-form.component';
 
 
 
@@ -13,13 +17,19 @@ import { PortfoliosComponent } from '../components/portfolios/portfolios.compone
   declarations: [
     LayoutComponent,
     HeaderComponent,
-    PortfoliosComponent
+    PortfoliosComponent,
+    CreatePortfolioComponent,
+    TraineesComponent,
+    TraineeFormComponent
   ],
+
   imports: [
     CommonModule,
     LayoutRoutingModule,
     MaterialModule,
-    ComponentsModule
+    ComponentsModule,
+    ReactiveFormsModule
+
   ]
 })
 export class LayoutModule { }

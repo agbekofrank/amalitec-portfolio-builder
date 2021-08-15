@@ -1,0 +1,27 @@
+<mat-card>
+  <form action="" method="post">
+    <mat-form-field appearance="fill">
+      <mat-label>Firstname</mat-label>
+      <input matInput #input minlength="2" placeholder="Firstname" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Lastname</mat-label>
+      <input matInput #input minlength="2" placeholder="Lastname" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput #input minlength="2" placeholder="Email" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input matInput #input minlength="2" placeholder="Password" type="password" />
+      </mat-form-field>
+
+      <button mat-button type="submit">
+          Save
+      </button>
+      <button mat-button type="button">
+        Clear
+    </button>
+  </form>
+</mat-card>

@@ -1,0 +1,24 @@
+.container {
+    margin: 10px auto;
+    border: 1p solid red;
+}
+form {
+    margin: 30px;
+}
+.control-container {
+    width: 100%;
+    padding: 5%;
+}
+.control-container *{
+    width: 100%;
+}
+.add-bottom-paddin {
+    padding-bottom: 10px;
+}
+.button-row *{
+margin: 10px;
+width: 17%;
+}
+mat-radio-group{
+    display: flex;
+}

@@ -1,8 +1,18 @@
 <mat-toolbar role="navigation">
-    <img src="../../../assets/images/AMALITECH.png" alt=""> 
-    <ul>
-        <li>dfg</li>
-        <li>dfg</li>
-        <li>dfg</li>
-    </ul>
+  <img src="../../../assets/images/AMALITECH.png" alt="" />
+  <ul>
+    <li class="add">
+      <mat-icon
+        (click)="createPortfolio()"
+        routerLinkActive="router-link-active"
+        >add</mat-icon
+      >
+    </li>
+    <li>
+      <mat-icon>person</mat-icon>
+    </li>
+    <li>
+      <mat-icon>notifications</mat-icon>
+    </li>
+  </ul>
 </mat-toolbar>

@@ -32,10 +32,15 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatButtonModule } from '@angular/material/button';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatNativeDateModule } from '@angular/material/core';
 
 const MaterialComponents = [
     MatInputModule,
     MatAutocompleteModule,
+    MatNativeDateModule,
+    MatCheckboxModule,
     MatDatepickerModule,
     MatFormFieldModule,
     MatRadioModule,
@@ -43,6 +48,8 @@ const MaterialComponents = [
     MatSliderModule,
     MatSlideToggleModule,
     MatMenuModule,
+    MatButtonModule,
+    MatGridListModule,
     MatSidenavModule,
     MatToolbarModule,
     MatListModule,
@@ -54,6 +61,8 @@ const MaterialComponents = [
     MatButtonToggleModule,
     MatChipsModule,
     MatIconModule,
+    MatPaginatorModule,
+    MatSortModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,
     MatDialogModule,
