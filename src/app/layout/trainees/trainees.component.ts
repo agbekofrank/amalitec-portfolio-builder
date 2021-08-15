@@ -14,11 +14,12 @@ import { MatSort } from '@angular/material/sort';
 export class TraineesComponent implements OnInit {
   isLoading = true;
   trainees!: Trainee[];
+  data!: Trainee[];
 
   constructor(public service: TraineesService) {}
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  displayedColumns: string[] = ['ID', 'fname', 'lname', 'skills', 'education','email'];
+  dataSource = new MatTableDataSource<Trainee>(this.data);
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -30,11 +31,16 @@ export class TraineesComponent implements OnInit {
     this.getTrainees();
   }
 
+  // addTrainee(formData:any){
+  //   this.service.addTrainee(formData)
+  // }
   getTrainees(): any {
     this.service
       .getTrainees()
       .pipe(finalize(() => (this.isLoading = false)))
-      .subscribe((trainees) => (this.trainees = trainees));
+      .subscribe((data) => {
+        this.data = data
+      });
   }
 
 }

@@ -9,8 +9,8 @@ import { Observable } from 'rxjs';
 })
 export class TraineesService {
 
-  // private url = 'http://127.0.0.1:8000/trainees/api';
-  private url = 'https://portfolioag.herokuapp.com/trainees/api/';
+  private url = 'http://127.0.0.1:8000/trainees/api';
+  // private url = 'https://portfolioag.herokuapp.com/trainees/api/';
   trainee!: Trainee;
 
   constructor(
@@ -21,18 +21,18 @@ export class TraineesService {
     return this.http.get<Trainee[]>(this.url)
   }
   
-  // addTrainee(formData){
-  //   return this.http.post(this.url,)
-  // }
+  addTrainee(formData:any){
+    return this.http.post(`${this.url}/create/` ,formData)
+  }
 
   form: FormGroup = new FormGroup({
     $key: new FormControl(null),
-    firstName: new FormControl('', Validators.required),
-    lastName: new FormControl('', Validators.required),
+    first_name: new FormControl('', Validators.required),
+    last_name: new FormControl('', Validators.required),
     email: new FormControl('',[Validators.email, Validators.required]),
     password: new FormControl('', Validators.required),
-    gender: new FormControl(1, Validators.required),
-    certifications: new FormControl([]),
+    gender: new FormControl('M', Validators.required),
+    certifications: new FormControl(['one']),
     skills: new FormControl([], Validators.required),
     education: new FormControl(''),
     startDate: new FormControl('')
@@ -40,8 +40,8 @@ export class TraineesService {
   initializeFormGroup(){
     this.form.setValue({
       $key: null,
-      firstName: '', 
-      lastName: '', 
+      first_name: '', 
+      last_name: '', 
       email: '',
       password: '', 
       gender: 1, 
