@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { TraineesService } from 'src/app/services/trainees.service';
 
 @Component({
@@ -14,7 +15,11 @@ export class TraineeFormComponent implements OnInit {
     { id: 3, value: 'css' },
   ];
 
-  constructor(public service: TraineesService, private fb: FormBuilder) {}
+  constructor(
+    public service: TraineesService, 
+    private fb: FormBuilder,
+    private dialog: MatDialog
+    ) {}
   form: any = FormGroup;
 
   ngOnInit(): void {}
@@ -33,6 +38,7 @@ export class TraineeFormComponent implements OnInit {
     this.service.addTrainee(formData).subscribe(
       resp => console.log(resp)
     )
+    this.dialog.closeAll()
   }
   onClear() {
     this.service.form.reset();

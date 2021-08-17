@@ -16,7 +16,7 @@ mat-toolbar {
     display: inline-block;
     margin: auto 1vw;
   }
-  .add {
+  .add, .accounts {
     cursor: pointer;
     :hover{
       transform: scale(1.4);

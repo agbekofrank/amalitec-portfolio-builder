@@ -1,17 +1,23 @@
 <main>
-  <article>
+  <mat-icon class="arrow" (click)="back()">
+    arrow_back_ios
+  </mat-icon>
+  <article *ngIf="trainee">
     <section class="img-holder">
       <figure class="pics">
         <img src="../../../assets/images/portfolio/200X200.jpg" alt="" />
       </figure>
       <aside class="info">
         <p class="p1">
-          THIS IS <span class="offwhite"> KWAME OWUSU ANSAH</span>, PROFICIENT
-          IN
+          THIS IS
+          <span class="offwhite">
+            {{ trainee.first_name.toUpperCase() }}
+            {{ trainee.last_name.toUpperCase() }} </span
+          >, PROFICIENT IN
         </p>
         <span class="p2">
-          <p class="offwhite">REACT &</p>
-          <p class="green">NODEJS WITH VANILLA</p>
+          <p class="offwhite">{{ trainee.skills.toUpperCase() }} &</p>
+          <p class="green">{{ trainee.certifications }}</p>
         </span>
         <span class="p3">PORTFOLIO</span>
       </aside>

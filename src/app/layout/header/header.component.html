@@ -8,8 +8,40 @@
         >add</mat-icon
       >
     </li>
-    <li>
-      <mat-icon>person</mat-icon>
+    <li class="accounts" [matMenuTriggerFor]="profile">
+      <mat-icon
+        *ngIf="!user"
+        >person</mat-icon
+      >
+      <span *ngIf="user">
+        {{ user }}
+      </span>
+    </li>
+    <li class="add">
+      <!-- <button mat-button [matMenuTriggerFor]="profile">
+        <mat-icon *ngIf="!user">person</mat-icon>
+        <span *ngIf="user">
+          {{ user }}
+        </span>
+      </button> -->
+      <mat-menu #profile="matMenu">
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>arrow_backward</mat-icon>
+          sign out
+        </button>
+        <button mat-menu-item>
+          <mat-item routerLink="/accounts/login">
+            <mat-icon>arrow_forward</mat-icon>
+            login
+          </mat-item>
+        </button>
+        <button mat-menu-item>
+          <mat-item routerLink="/accounts/signup">
+            <mat-icon>group_add</mat-icon>
+            signup
+          </mat-item>
+        </button>
+      </mat-menu>
     </li>
     <li>
       <mat-icon>notifications</mat-icon>

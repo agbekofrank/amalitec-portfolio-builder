@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard, PreventLoggedInAccess } from '../accounts/auth.guard';
 import { CreatePortfolioComponent } from '../components/create-portfolio/create-portfolio.component';
+import { PortfoliosComponent } from '../components/portfolios/portfolios.component';
 import { LayoutComponent } from './layout.component';
 import { TraineesComponent } from './trainees/trainees.component';
 
@@ -10,6 +12,14 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       {
+        path: 'accounts',
+        loadChildren: () =>
+          import('../accounts/accounts.module').then((m) => m.AccountsModule),
+      },
+      {
+        path: ':id', component: PortfoliosComponent
+      },
+      {
         path: 'portfolios',
         loadChildren: () =>
           import('../components/components/components.module').then(
@@ -17,11 +27,12 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'create-portfolio', component: CreatePortfolioComponent
+        path: 'create-portfolio',
+        component: CreatePortfolioComponent
       },
       {
-        path: '', component: TraineesComponent
-      }
+        path: '', component: TraineesComponent, //canActivate: [AuthGuard]
+      },
     ],
   },
 ];

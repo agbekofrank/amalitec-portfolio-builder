@@ -16,9 +16,21 @@ export class TraineesComponent implements OnInit {
   trainees!: Trainee[];
   data!: Trainee[];
 
-  constructor(public service: TraineesService) {}
+  constructor(
+    public service: TraineesService
+    ) {}
 
-  displayedColumns: string[] = ['ID', 'fname', 'lname', 'skills', 'education','email'];
+  displayedColumns: string[] = [
+    'ID', 
+    'fname', 
+    'lname', 
+    'skills', 
+    'education',
+    'certifications',
+    'email',
+    'edit',
+    'delete'
+  ];
   dataSource = new MatTableDataSource<Trainee>(this.data);
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -31,9 +43,9 @@ export class TraineesComponent implements OnInit {
     this.getTrainees();
   }
 
-  // addTrainee(formData:any){
-  //   this.service.addTrainee(formData)
-  // }
+  addTrainee(){
+    this.service.openTraineeModal();
+  }
   getTrainees(): any {
     this.service
       .getTrainees()

@@ -10,6 +10,7 @@ import { CreatePortfolioComponent } from '../components/create-portfolio/create-
 import { TraineesComponent } from './trainees/trainees.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TraineeFormComponent } from './trainee-form/trainee-form.component';
+import { AccountsModule } from '../accounts/accounts.module';
 
 
 
@@ -28,6 +29,7 @@ import { TraineeFormComponent } from './trainee-form/trainee-form.component';
     LayoutRoutingModule,
     MaterialModule,
     ComponentsModule,
+    AccountsModule,
     ReactiveFormsModule
 
   ]
