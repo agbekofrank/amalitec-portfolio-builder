@@ -2,9 +2,13 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { TraineesService } from 'src/app/services/trainees.service';
 import { filter, finalize, delay } from 'rxjs/operators';
 import { Trainee } from 'src/app/interfaces/trainee';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator} from '@angular/material/paginator';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { DialogBoxComponent } from '../dialog-box/dialog-box.component';
+import { FormBuilder } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-trainees',
@@ -14,47 +18,100 @@ import { MatSort } from '@angular/material/sort';
 export class TraineesComponent implements OnInit {
   isLoading = true;
   trainees!: Trainee[];
-  data!: Trainee[];
+  data!: any;
+  currentId: any;
 
   constructor(
-    public service: TraineesService
+    public service: TraineesService, 
+    private fb: FormBuilder,
+    public dialog: MatDialog,
+    private route: ActivatedRoute
     ) {}
 
   displayedColumns: string[] = [
-    'ID', 
-    'fname', 
-    'lname', 
-    'skills', 
+    'ID',
+    'fname',
+    'lname',
+    'skills',
     'education',
     'certifications',
     'email',
-    'edit',
-    'delete'
+    'actions',
   ];
-  dataSource = new MatTableDataSource<Trainee>(this.data);
+  @ViewChild(MatTable, { static: true }) table!: MatTable<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-
   ngOnInit(): void {
-
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
     this.getTrainees();
+    this.data.paginator = this.paginator;
+    this.data.sort = this.sort;
+  }
+  
+  openDialog(action: any, obj: any) {
+    obj.action = action;
+    const dialogRef = this.dialog.open(DialogBoxComponent, {
+      // width: '40vw',
+      data: obj,
+      panelClass: 'custom-modalbox'
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result.event == 'Add') {
+        this.addTrainee(result.data);
+      } else if (result.event == 'Update') {
+        this.updateTrainee(result.data);
+      } else if (result.event == 'Delete') {        
+        this.deleteTrainee(result.data);
+      }
+    });
+  }
+  getFormData = () => {
+    var d = new Date();
+    const formData = new FormData();
+    let form = this.service.form;
+    formData.append('first_name', form.get('first_name')!.value);
+    formData.append('last_name', form.get('last_name')!.value);
+    formData.append('email', form.get('email')!.value);
+    formData.append('password', form.get('password')!.value);
+    formData.append('education', form.get('education')!.value);
+    formData.append('skills', form.get('skills')!.value);
+    formData.append('certifications', form.get('certifications')!.value);
+    formData.append('gender', form.get('gender')!.value);
+    return formData
+  }
+  addTrainee(trainee: any) {
+    const formData = this.getFormData()
+    // console.log(formData);
+    this.service.addTrainee(formData).subscribe(
+      resp => console.log(resp)
+    )
+    this.table.renderRows();
+  }
+  updateTrainee(trainee: Trainee) {
+    const id = +this.service.form.get('id')!.value;
+    const formData = this.getFormData()
+    this.service.updateTrainee(formData, id).subscribe(resp => {
+      console.log(resp)
+    })
   }
 
-  addTrainee(){
-    this.service.openTraineeModal();
+  g(e:any){
+    this.currentId =  e.target.id
   }
+  deleteTrainee(e:any) {
+    this.service.deleteTrainee(this.currentId).subscribe(resp => {
+      console.log(resp)
+    })
+  }
+
   getTrainees(): any {
     this.service
       .getTrainees()
       .pipe(finalize(() => (this.isLoading = false)))
       .subscribe((data) => {
-        this.data = data
+        this.data = new MatTableDataSource<Trainee>(data);
       });
   }
-
 }
 
 /* Static data */

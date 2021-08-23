@@ -19,7 +19,7 @@ export class AuthService {
     const payload = jwtDecode<JWTPayload>(token);
     const expiresAt = moment.unix(payload.exp);
     localStorage.setItem('token', authResult.token);
-    localStorage.setItem('currentUser', JSON.stringify(authResult.user));
+    localStorage.setItem('currentUser', JSON.stringify(authResult.username));
     localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
   }
 
@@ -61,7 +61,7 @@ export class AuthService {
     localStorage.removeItem('token');
     localStorage.removeItem('currentUser');
     localStorage.removeItem('expires_at');
-    // this.refresh();
+    this.refresh();
   }
   refreshToken(){
     if (
@@ -96,6 +96,8 @@ export class AuthService {
     return !this.isLoggedIn();
   }
   getUser() {
+    const c = localStorage.getItem('currentUser')
+    console.log(c)
     return localStorage.getItem('currentUser');
   }
   refresh(): void {

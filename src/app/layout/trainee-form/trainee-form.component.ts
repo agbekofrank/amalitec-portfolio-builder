@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 import { TraineesService } from 'src/app/services/trainees.service';
 
 @Component({
@@ -18,7 +18,7 @@ export class TraineeFormComponent implements OnInit {
   constructor(
     public service: TraineesService, 
     private fb: FormBuilder,
-    private dialog: MatDialog
+    private dialog: MatDialogRef<TraineeFormComponent>
     ) {}
   form: any = FormGroup;
 
@@ -38,7 +38,12 @@ export class TraineeFormComponent implements OnInit {
     this.service.addTrainee(formData).subscribe(
       resp => console.log(resp)
     )
-    this.dialog.closeAll()
+    this.onClose()
+  }
+  onClose(){
+    this.service.form.reset()
+    this.service.initializeFormGroup();
+    this.dialog.close()
   }
   onClear() {
     this.service.form.reset();

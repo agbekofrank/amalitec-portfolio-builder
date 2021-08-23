@@ -1,0 +1,32 @@
+
+form {
+    margin: 30px;
+}
+.control-container {
+    width: 100%;
+    padding: 5%;
+}
+.control-container *{
+    width: 100%;
+}
+.add-bottom-paddin {
+    padding-bottom: 10px;
+}
+.button-row *{
+margin: 10px;
+width: 17%;
+}
+mat-radio-group{
+    display: flex;
+}
+mat-icon.close{
+    position: relative;
+    float: right;
+    top: 0;
+    cursor: pointer;
+}
+mat-dialog-actions{
+    button {
+        width: 10%;
+    }
+}

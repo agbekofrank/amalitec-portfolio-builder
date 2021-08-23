@@ -20,3 +20,10 @@ width: 17%;
 mat-radio-group{
     display: flex;
 }
+mat-icon.close{
+    position: relative;
+    float: right;
+    top: 0;
+    cursor: pointer;
+    
+}

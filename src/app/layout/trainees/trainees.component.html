@@ -1,53 +1,75 @@
 <div class="wrapper">
-  <button mat-raised-button class="add-btn" (click)="addTrainee()">
+  <button mat-raised-button class="add-btn" (click)="openDialog('Add', {})">
     <mat-icon>add</mat-icon>
     Add New
   </button>
   <table mat-table [dataSource]="data" matSort class="mat-elevation-z8">
-    <ng-container matColumnDef="ID">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>ID.</th>
-      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
-    </ng-container>
+    <section>
+      <ng-container matColumnDef="ID">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>ID.</th>
+        <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+      </ng-container>
+      <ng-container matColumnDef="fname">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>First name</th>
+        <td mat-cell *matCellDef="let element" class="router-link" routerLink="/{{ element.id }}">
+          {{ element.first_name }}
+        </td>
+      </ng-container>
 
-    <ng-container matColumnDef="fname">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>First name</th>
-      <td mat-cell *matCellDef="let element">{{ element.first_name }}</td>
-    </ng-container>
+      <ng-container matColumnDef="lname">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Last name</th>
+        <td mat-cell *matCellDef="let element" class="router-link" routerLink="/{{ element.id }}">
+          {{ element.last_name }}
+        </td>
+      </ng-container>
 
-    <ng-container matColumnDef="lname">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Last name</th>
-      <td mat-cell *matCellDef="let element">{{ element.last_name }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="skills">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Skills</th>
-      <td mat-cell *matCellDef="let element">{{ element.skills }}</td>
-    </ng-container>
-    <ng-container matColumnDef="education">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Education</th>
-      <td mat-cell *matCellDef="let element">{{ element.education }}</td>
-    </ng-container>
-    <ng-container matColumnDef="certifications">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>certifications</th>
-      <td mat-cell *matCellDef="let element">{{ element.certifications }}</td>
-    </ng-container>
-    <ng-container matColumnDef="email">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
-      <td mat-cell *matCellDef="let element">{{ element.email }}</td>
-    </ng-container>
-    <ng-container
-      matColumnDef="edit"
-    >
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>edit</th>
-      <td class="action" mat-cell *matCellDef="let element" [routerLink]="element.id"
-      routerLinkActive="router-link-active">
-        <mat-icon>edit</mat-icon>
-      </td>
-    </ng-container>
-    <ng-container matColumnDef="delete">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>delete</th>
-      <td mat-cell *matCellDef="let element">
-        <mat-icon class="action">delete</mat-icon>
+      <ng-container matColumnDef="skills">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Skills</th>
+        <td mat-cell *matCellDef="let element" class="router-link" routerLink="/{{ element.id }}">
+          <span *ngIf="element.skills">
+            <span *ngFor="let skill of element.skills">
+              {{ skill.name }}({{ skill.proficiency }}%)
+            </span>
+            <!-- {{ element.skills }} -->
+          </span>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="education">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Education</th>
+        <td mat-cell *matCellDef="let element" class="router-link" routerLink="/{{ element.id }}">
+          <span *ngIf="element.education">
+            {{ element.education.major }} from
+            {{ element.education.institution.name }}
+          </span>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="certifications">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          Certifications
+        </th>
+        <td mat-cell *matCellDef="let element" class="router-link" routerLink="/{{ element.id }}">
+          <span *ngFor="let cert of element.certifications">
+            {{ cert.skills_level }}
+          </span>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+        <td mat-cell *matCellDef="let element" class="router-link" routerLink="/{{ element.id }}">
+          {{ element.email }}
+        </td>
+      </ng-container>
+    </section>
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Actions</th>
+      <td class="action" mat-cell *matCellDef="let element" >
+        <mat-icon (click)="openDialog('Update', element)">edit</mat-icon>
+        <mat-icon
+          id="{{ element.id }}"
+          (click)="g($event)"
+          (click)="openDialog('Delete', element)"
+          >delete</mat-icon
+        >
       </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

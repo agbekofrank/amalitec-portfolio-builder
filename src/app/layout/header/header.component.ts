@@ -1,5 +1,9 @@
-import { Component, OnInit, Output } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { Component, Inject, OnInit, Output } from '@angular/core';
+import {
+  MatDialog,
+  MatDialogConfig,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { EventEmitter } from '@angular/core';
@@ -19,22 +23,30 @@ export class HeaderComponent implements OnInit {
   showModeratorBoard = false;
   user: any;
   constructor(
+    // @Inject(MAT_DIALOG_DATA) public data: {name: 'data'},
     private dialog: MatDialog,
     private authService: AuthService,
     private route: Router
   ) {}
 
   ngOnInit(): void {
-    this.user = this.authService.getUser()
-      ? JSON.parse(this.authService.getUser()!).username
-      : this.authService.getUser();
+    this.getUser();
   }
   createPortfolio() {
     const dialogConfig = new MatDialogConfig();
-    // dialogConfig.disableClose = true;
+    dialogConfig.data = { email: 2 };
+    dialogConfig.hasBackdrop = true;
+    dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = '55%';
+    dialogConfig.width = '60%';
+
     this.dialog.open(TraineeFormComponent, dialogConfig);
+  }
+
+  getUser() {
+    this.user = this.authService.getUser()
+      ? JSON.parse(this.authService.getUser()!)
+      : this.authService.getUser();
   }
 
   logout() {

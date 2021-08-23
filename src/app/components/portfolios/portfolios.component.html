@@ -1,5 +1,5 @@
 <main>
-  <mat-icon class="arrow" (click)="back()">
+  <mat-icon class="arrow position" (click)="back()">
     arrow_back_ios
   </mat-icon>
   <article *ngIf="trainee">
@@ -16,8 +16,8 @@
           >, PROFICIENT IN
         </p>
         <span class="p2">
-          <p class="offwhite">{{ trainee.skills.toUpperCase() }} &</p>
-          <p class="green">{{ trainee.certifications }}</p>
+          <p class="offwhite">{{ trainee.skills[0].name}} &</p>
+          <p class="green">{{ trainee.skills[1]!.name}}</p>
         </span>
         <span class="p3">PORTFOLIO</span>
       </aside>
@@ -27,7 +27,7 @@
         <mat-icon>settings</mat-icon>
         <h3>JavaScript</h3>
         <div class="skill-set-container skills-text">
-          <div class="js">90%</div>
+          <div class="js">{{trainee.skills[0].proficiency}}%</div>
         </div>
       </div>
       <div class="box">

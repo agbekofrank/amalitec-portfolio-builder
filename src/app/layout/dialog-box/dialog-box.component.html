@@ -1,0 +1,135 @@
+<mat-icon class="close" (click)="onClose()">close</mat-icon>
+<h2 mat-dialog-title>
+  <strong>{{ action }}</strong> Trainee
+</h2>
+<mat-dialog-content
+  action=""
+  method="post"
+  [formGroup]="service.form"
+  class="trainees-form"
+  (ngSubmit)="onSubmit()"
+>
+  <mat-grid-list cols="2" *ngIf="action != 'Delete'; else elseTemplate">
+    <mat-grid-tile>
+      <div class="control-container">
+        <input type="hidden" formControlName="$key" />
+        <input type="hidden" formControlName="id" [(ngModel)]="local_data.id" />
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            formControlName="first_name"
+            [(ngModel)]="local_data.first_name"
+            placeholder="{{ action }} First Name"
+          />
+          <mat-error>This field is required</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            formControlName="last_name"
+            [(ngModel)]="local_data.last_name"
+            placeholder="Last Name"
+          />
+          <mat-error>This field is required</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            type="email"
+            formControlName="email"
+            [(ngModel)]="local_data.email"
+            placeholder="Email"
+          />
+          <mat-error>This field is required</mat-error>
+        </mat-form-field>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="control-container">
+        <mat-error>This field is required</mat-error>
+        <mat-form-field>
+          <mat-select
+            placeholder="skills"
+            formControlName="skills"
+            [(ngModel)]="local_data.skills"
+          >
+            <mat-option>None</mat-option>
+            <ng-container *ngFor="let skill of skills">
+              <mat-option value="{{ skill.id }}">
+                {{ skill.name }}
+              </mat-option>
+            </ng-container>
+          </mat-select>
+        </mat-form-field>
+        <div class="add-bottom-padding">
+          <mat-radio-group formControlName="gender">
+            <mat-radio-button value="M">Male</mat-radio-button>
+            <mat-radio-button value="F">Female</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <mat-form-field>
+          <input
+            matInput
+            type="password"
+            formControlName="password"
+            placeholder="Password"
+            [(ngModel)]="local_data.password"
+          />
+          <mat-error>This field is required</mat-error>
+        </mat-form-field>
+
+        <!-- <section class="add-bottom-padding" matInput>
+          <mat-label>Certifications</mat-label>
+          <mat-checkbox formControlName="certifications">Js</mat-checkbox>
+          <mat-checkbox formControlName="certifications">Html</mat-checkbox>
+          <mat-checkbox formControlName="certifications">Java</mat-checkbox>
+        </section> -->
+        <!-- <mat-form-field>
+          <input
+            matInput
+            formControlName="startDate"
+            [matDatepicker]="picker"
+            [(ngModel)]="local_data.startDate"
+            placeholder="start date"
+          />
+          <mat-datepicker-toggle matSuffix [for]="picker">
+          </mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field> -->
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <ng-template #elseTemplate>
+    Sure to delete <b>{{ local_data.name }}</b
+    >?
+  </ng-template>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-raised-button color="primary" (click)="doAction()">
+    {{ action }}
+  </button>
+  <button mat-button (click)="closeDialog()" mat-raised-button color="warn">
+    Cancel
+  </button>
+  <!-- <div class="button-row">
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="service.form.invalid"
+    >
+      save
+    </button>
+    <button
+      mat-raised-button
+      color="warn"
+      type="button"
+      (click)="onClear()"
+    >
+      clear
+    </button>
+  </div> -->
+</mat-dialog-actions>
+<!-- </mat-card> -->

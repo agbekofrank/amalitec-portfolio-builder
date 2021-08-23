@@ -4,6 +4,7 @@ import { AuthGuard, PreventLoggedInAccess } from '../accounts/auth.guard';
 import { CreatePortfolioComponent } from '../components/create-portfolio/create-portfolio.component';
 import { PortfoliosComponent } from '../components/portfolios/portfolios.component';
 import { LayoutComponent } from './layout.component';
+import { MatTableComponent } from './mat-table/mat-table.component';
 import { TraineesComponent } from './trainees/trainees.component';
 
 const routes: Routes = [
@@ -16,8 +17,10 @@ const routes: Routes = [
         loadChildren: () =>
           import('../accounts/accounts.module').then((m) => m.AccountsModule),
       },
+      { path: 'table', component: MatTableComponent },
       {
-        path: ':id', component: PortfoliosComponent
+        path: ':id',
+        component: PortfoliosComponent,
       },
       {
         path: 'portfolios',
@@ -28,10 +31,11 @@ const routes: Routes = [
       },
       {
         path: 'create-portfolio',
-        component: CreatePortfolioComponent
+        component: CreatePortfolioComponent,
       },
       {
-        path: '', component: TraineesComponent, //canActivate: [AuthGuard]
+        path: '',
+        component: TraineesComponent, //canActivate: [AuthGuard]
       },
     ],
   },

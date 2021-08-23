@@ -1,100 +1,104 @@
 <!-- <mat-card class="container"> -->
-<h2>Add Trainee</h2>
-  <form
-    action=""
-    method="post"
-    [formGroup]="service.form"
-    class="trainees-form"
-    (ngSubmit)="onSubmit()"
-  >
-    <mat-grid-list cols="2">
-      <mat-grid-tile>
-        <div class="control-container">
-          <input type="hidden" formControlName="$key" />
-          <mat-form-field>
-            <input
-              matInput
-              type="text"
-              formControlName="first_name"
-              placeholder="First Name"
-            />
-            <mat-error>This field is required</mat-error>
-          </mat-form-field>
-          <mat-form-field>
-            <input
-              matInput
-              type="text"
-              formControlName="last_name"
-              placeholder="Last Name"
-            />
-            <mat-error>This field is required</mat-error>
-          </mat-form-field>
-          <mat-form-field>
-            <input
-              matInput
-              type="email"
-              formControlName="email"
-              placeholder="Email"
-            />
-            <mat-error>This field is required</mat-error>
-          </mat-form-field>
-          <mat-form-field>
-            <input
-              matInput
-              type="password"
-              formControlName="password"
-              placeholder="Password"
-            />
-            <mat-error>This field is required</mat-error>
-          </mat-form-field>
-        </div>
-      </mat-grid-tile>
-      <mat-grid-tile>
-        <div class="control-container">
-          <div class="add-bottom-padding">
-            <mat-radio-group formControlName="gender">
-              <mat-radio-button value="M">Male</mat-radio-button>
-              <mat-radio-button value="F">Female</mat-radio-button>
-            </mat-radio-group>
-          </div>
+<mat-icon class="close" (click)="onClose()">close</mat-icon>
+<h2 mat-dialog-title>Add Trainee</h2>
+<mat-dialog-content
+  action=""
+  method="post"
+  [formGroup]="service.form"
+  class="trainees-form"
+  (ngSubmit)="onSubmit()"
+>
+  <mat-grid-list cols="2">
+    <mat-grid-tile>
+      <div class="control-container">
+        <input type="hidden" formControlName="$key" />
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            formControlName="first_name"
+            placeholder="First Name"
+          />
           <mat-error>This field is required</mat-error>
-          <mat-form-field>
-            <mat-select formControlName="skills" placeholder="skills">
-              <mat-option>None</mat-option>
-              <ng-container *ngFor="let skill of skills">
-                <mat-option value="{{ skill.id }}">{{
-                  skill.value
-                }}</mat-option>
-              </ng-container>
-            </mat-select>
-          </mat-form-field>
-          <div class="add-bottom-padding">
-            <mat-checkbox formControlName="certifications"
-              >Certifications</mat-checkbox
-            >
-          </div>
-          <mat-form-field>
-            <input
-              matInput
-              formControlName="education"
-              placeholder="education"
-            />
-          </mat-form-field>
-          <mat-form-field>
-            <input
-              matInput
-              formControlName="startDate"
-              [matDatepicker]="picker"
-              placeholder="start date"
-            />
-            <mat-datepicker-toggle
-              matSuffix
-              [for]="picker"
-            ></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            formControlName="last_name"
+            placeholder="Last Name"
+          />
+          <mat-error>This field is required</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            type="email"
+            formControlName="email"
+            placeholder="Email"
+          />
+          <mat-error>This field is required</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            type="password"
+            formControlName="password"
+            placeholder="Password"
+          />
+          <mat-error>This field is required</mat-error>
+        </mat-form-field>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="control-container">
+        <mat-error>This field is required</mat-error>
+        <mat-form-field>
+          <mat-select formControlName="skills" placeholder="skills">
+            <mat-option>None</mat-option>
+            <ng-container *ngFor="let skill of skills">
+              <mat-option value="{{ skill.value }}">{{
+                skill.value
+              }}</mat-option>
+            </ng-container>
+          </mat-select>
+        </mat-form-field>
+        <div class="add-bottom-padding">
+          <mat-checkbox formControlName="certifications"
+            >Certifications
+          </mat-checkbox
+          >
+        </div>
+        <mat-form-field>
+          <input matInput formControlName="education" placeholder="education" />
+        </mat-form-field>
+        <div class="add-bottom-padding">
+          <mat-radio-group formControlName="gender">
+            <mat-radio-button value="M">Male</mat-radio-button>
+            <mat-radio-button value="F">Female</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <mat-form-field>
+          <input
+            matInput
+            formControlName="startDate"
+            [matDatepicker]="picker"
+            placeholder="start date"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-dialog-actions>
           <div class="button-row">
-            <button mat-raised-button color="primary" type="submit">
+            <button
+              mat-raised-button
+              color="primary"
+              type="submit"
+              [disabled]="service.form.invalid"
+            >
               save
             </button>
             <button
@@ -106,8 +110,9 @@
               clear
             </button>
           </div>
-        </div>
-      </mat-grid-tile>
-    </mat-grid-list>
-  </form>
+        </mat-dialog-actions>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</mat-dialog-content>
 <!-- </mat-card> -->

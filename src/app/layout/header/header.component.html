@@ -9,21 +9,12 @@
       >
     </li>
     <li class="accounts" [matMenuTriggerFor]="profile">
-      <mat-icon
-        *ngIf="!user"
-        >person</mat-icon
-      >
-      <span *ngIf="user">
+      <mat-icon *ngIf="!user">person</mat-icon>
+      <span *ngIf="user" class="user">
         {{ user }}
       </span>
     </li>
     <li class="add">
-      <!-- <button mat-button [matMenuTriggerFor]="profile">
-        <mat-icon *ngIf="!user">person</mat-icon>
-        <span *ngIf="user">
-          {{ user }}
-        </span>
-      </button> -->
       <mat-menu #profile="matMenu">
         <button mat-menu-item (click)="logout()">
           <mat-icon>arrow_backward</mat-icon>
